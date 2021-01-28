@@ -3,3 +3,5 @@ kind: Kustomization
 resources:
 - argocd.yaml
 - devapps.yaml
+- secapps.yaml
+
