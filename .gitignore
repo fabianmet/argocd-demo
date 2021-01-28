@@ -1,2 +1,5 @@
 *.pptx
 terraform/*
+.kubeconfig
+telepresence.log
+.argoconfig
