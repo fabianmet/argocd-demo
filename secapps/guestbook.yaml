@@ -5,11 +5,11 @@ metadata:
 spec:
   destination:
     namespace: argocd
-    server: https://34.91.217.97
+    server: https://172.18.0.3:6443
   project: default
   source:
     path: apps/guestbook
-    repoURL: https://github.com/fabianmet/argocd-demo.git
+    repoURL: https://github.com/rio/argocd-demo.git
     targetRevision: main
   syncPolicy:
     automated:
