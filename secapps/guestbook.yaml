@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sec-guestbook
+spec:
+  destination:
+    namespace: argocd
+    server: https://34.91.217.97
+  project: default
+  source:
+    path: apps/guestbook
+    repoURL: https://github.com/fabianmet/argocd-demo.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
