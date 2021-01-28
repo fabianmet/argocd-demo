@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+data:
+  configManagementPlugins: |
+    - name: sopskustomize
+      init:
+        command: ["/bin/sh", "-c"]
+        args: ["decrypt_secrets.sh"]
+      generate:
+        command: [sh, -c]
+        args: ["kustomize build"]

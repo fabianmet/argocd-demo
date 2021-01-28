@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-rbac-cm
+data:
+  policy.csv: |
+    p, role:foo-team, applications, *, foo-team/*, allow
+    g, "AD group goes here", role:foo-team

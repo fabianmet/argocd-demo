@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-repo-server
+spec:
+  template:
+    spec:
+      volumes:
+        - name: custom-tools
+          emptyDir: {}
+        - name: sops-script
+          configMap:
+            name: sops-script
+            defaultMode: 0777
+            items:
+              - key: decrypt_secrets.sh
+                path: decrypt_secrets.sh
+      initContainers:
+        - name: install-sops
+          image: quay.io/f_met/sops-alpine:sops-3.5.0
+          command: ["/bin/sh", "-c"]
+          args:
+            - echo "Installing SOPS...";
+              cp /usr/local/bin/sops /custom-tools/sops;
+              echo "Done.";
+          volumeMounts:
+            - mountPath: /custom-tools
+              name: custom-tools
+      containers:
+        - name: argocd-repo-server
+          volumeMounts:
+            - mountPath: /usr/local/bin/sops
+              name: custom-tools
+              subPath: sops
+            - name: sops-script
+              mountPath: /usr/local/bin/decrypt_secrets.sh
+              subPath: decrypt_secrets.sh
