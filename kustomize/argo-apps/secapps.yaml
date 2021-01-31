@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     path: secapps
-    repoURL: https://github.com/rio/argocd-demo.git
+    repoURL: https://github.com/fabianmet/argocd-demo.git
     targetRevision: main
   syncPolicy:
     automated:
