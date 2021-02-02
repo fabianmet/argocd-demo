@@ -5,7 +5,7 @@ metadata:
 spec:
   destination:
     namespace: argocd
-    server: https://34.91.217.97
+    name: k3d-secondary
   project: default
   source:
     path: apps/guestbook
